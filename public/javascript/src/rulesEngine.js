@@ -1,7 +1,8 @@
-function createRulesEngine() {
+function createRulesEngine(rule) {
+
     return {
         play: function(card) {
-            if(card.value !== 10) return { played: false };
+            if(card.value !== rule.value) return { played: false };
             return {played: true};
         }
     }
