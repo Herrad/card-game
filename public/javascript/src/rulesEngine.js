@@ -1,15 +1,12 @@
 function createRulesEngine(rule) {
+    const operators = {
+        "equal": card => (!rule.suit || card.suit === rule.suit) && (!rule.value || card.value === rule.value),
+        "not": card => !rule.suit || card.suit !== rule.suit
+    }
 
     return {
         play: function(card) {
-            if(rule.match === 'equal') {
-                if(rule.value && card.value !== rule.value) return { played: false };
-                if(rule.suit && card.suit !== rule.suit) return { played: false };
-            }
-            if(rule.match === 'not') {
-                if(rule.suit && card.suit === rule.suit) return { played: false };
-            }
-            return {played: true};
+            return {played: operators[rule.match](card)};
         }
     }
 }
