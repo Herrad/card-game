@@ -10,4 +10,11 @@ describe('Given I have a rule that says only 10s can be played', () => {
             expect(result.played).to.equal(true);
         })
     })
+    describe('When I play a 5 of spades', () => {
+        const engine = createRulesEngine(rules);
+        const result = engine.play({value: 5, suit: 'Spades'});
+        it('Then the card is not played', () => {
+            expect(result.played).to.equal(false);
+        })
+    })
 })
