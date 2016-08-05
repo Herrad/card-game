@@ -39,3 +39,24 @@ describe('Given I have a rule that says only 6s can be played', () => {
         })
     })
 })
+
+describe('Given I have a rule that says only spades can be played', () => {
+    const rule = {
+        suit: "Spades",
+        match: true
+    };
+    describe('When I play a 10 of spades', () => {
+        const engine = createRulesEngine(rule);
+        const result = engine.play({value: 10, suit: 'Spades'});
+        it('Then the card is played', () => {
+            expect(result.played).to.equal(true);
+        })
+    });
+    describe('When I play a 10 of clubs', () => {
+        const engine = createRulesEngine(rule);
+        const result = engine.play({value: 10, suit: 'Clubs'});
+        it('Then the card is not played', () => {
+            expect(result.played).to.equal(false);
+        })
+    })
+})
