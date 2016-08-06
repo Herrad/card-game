@@ -63,6 +63,7 @@ describe('Given I have a rule that says only spades can be played', () => {
 
 describe('Given I have a rule that says only the 10 of spades can be played', () => {
     const rule = {
+        value: 10,
         suit: "Spades",
         match: 'equal'
     };
@@ -80,20 +81,20 @@ describe('Given I have a rule that says only the 10 of spades can be played', ()
             expect(result.played).to.equal(false);
         })
     })
-    // describe('When I play a 4 of spades', () => {
-    //     const engine = createRulesEngine(rule);
-    //     const result = engine.play({value: 4, suit: 'Spades'});
-    //     it('Then the card is not played', () => {
-    //         expect(result.played).to.equal(false);
-    //     })
-    // })
-    // describe('When I play a 4 of clubs', () => {
-    //     const engine = createRulesEngine(rule);
-    //     const result = engine.play({value: 4, suit: 'Spades'});
-    //     it('Then the card is not played', () => {
-    //         expect(result.played).to.equal(false);
-    //     })
-    // })
+    describe('When I play a 4 of spades', () => {
+        const engine = createRulesEngine(rule);
+        const result = engine.play({value: 4, suit: 'Spades'});
+        it('Then the card is not played', () => {
+            expect(result.played).to.equal(false);
+        })
+    })
+    describe('When I play a 4 of clubs', () => {
+        const engine = createRulesEngine(rule);
+        const result = engine.play({value: 4, suit: 'Spades'});
+        it('Then the card is not played', () => {
+            expect(result.played).to.equal(false);
+        })
+    })
 })
 
 describe('Given I have a rule that says anything but spades can be played', () => {
