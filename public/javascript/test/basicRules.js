@@ -116,25 +116,32 @@ describe('Given I have a rule that says anything but spades can be played', () =
             expect(result.played).to.equal(true);
         })
     })
+    describe('When I play a 4 of clubs', () => {
+        const engine = createRulesEngine(rule);
+        const result = engine.play({value: 4, suit: 'Clubs'});
+        it('Then the card is played', () => {
+            expect(result.played).to.equal(true);
+        })
+    })
 })
 
-// describe('Given I have a rule that says anything but 7s can be played', () => {
-//     const rule = {
-//         value: 7,
-//         match: 'not'
-//     };
-//     describe('When I play a 10 of spades', () => {
-//         const engine = createRulesEngine(rule);
-//         const result = engine.play({value: 10, suit: 'Spades'});
-//         it('Then the card is not played', () => {
-//             expect(result.played).to.equal(false);
-//         })
-//     });
-//     describe('When I play a 7 of spades', () => {
-//         const engine = createRulesEngine(rule);
-//         const result = engine.play({value: 7, suit: 'Clubs'});
-//         it('Then the card is played', () => {
-//             expect(result.played).to.equal(true);
-//         })
-//     })
-// })
+describe('Given I have a rule that says anything but 7s can be played', () => {
+    const rule = {
+        value: 7,
+        match: 'not'
+    };
+    describe('When I play a 10 of spades', () => {
+        const engine = createRulesEngine(rule);
+        const result = engine.play({value: 10, suit: 'Spades'});
+        it('Then the card is played', () => {
+            expect(result.played).to.equal(true);
+        })
+    });
+    describe('When I play a 7 of spades', () => {
+        const engine = createRulesEngine(rule);
+        const result = engine.play({value: 7, suit: 'Clubs'});
+        it('Then the card is not played', () => {
+            expect(result.played).to.equal(false);
+        })
+    })
+})
